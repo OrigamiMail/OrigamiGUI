@@ -1,0 +1,5 @@
+# Most files does not matter so set to auto
+* text=auto
+
+# We care about .sh files (use linefeed online instead of carriage return line feed)
+*.sh text eol=lf
