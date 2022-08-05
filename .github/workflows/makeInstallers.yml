@@ -17,6 +17,8 @@ jobs:
         run:  sudo apt update && sudo apt install -y nsis nsis-pluginapi
       - name: Build with maven
         run: mvn --batch-mode --update-snapshots package
+      - name: Update config versions
+        run: ./update-windows-installer-version.sh 
       - name: Install launch4j prereqs
         run:  sudo apt install -y libncurses5 lib32z1
       - name:  Make executable (launch4j)
