@@ -44,6 +44,6 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            origami-smtp.jar
-            origami-smtp_${{ env.GIT_TAG_NAME}}.exe
-            origami-smtp_${{ env.GIT_TAG_NAME}}.deb
+            target/origami-smtp.jar
+            origami-smtp_${{ env.GIT_TAG_NAME }}-setup.exe
+            origami-smtp_${{ env.GIT_TAG_NAME }}.deb
