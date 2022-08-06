@@ -24,8 +24,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with: 
           upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-          asset_path: ./origami-smtp_v2.0.0-setup.exe
-          asset_name: origami-smtp.exe
+          asset_path: ./
+          asset_name: origami-smtp_v2.0.0-setup.exe
           asset_content_type: application/octet-stream
 
   build:
