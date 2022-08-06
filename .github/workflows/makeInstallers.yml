@@ -12,7 +12,8 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
-          distribution: 'adopt'
+          distribution: 'liberica'
+          java-package: jdk+fx
       - name: Install NSIS
         run:  sudo apt update && sudo apt install -y nsis nsis-pluginapi
       - name: Build with maven
@@ -38,7 +39,6 @@ jobs:
       - name: Get tag name
         uses: olegtarasov/get-tag@v2.1
         id: tagName      
-
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
