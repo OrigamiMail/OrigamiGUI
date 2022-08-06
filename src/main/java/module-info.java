@@ -14,4 +14,10 @@ module com.pessetto.OrigamiGUI {
     requires javafx.web;
     requires javafx.swing;
     requires jdk.jsobject;
+    
+    opens com.pessetto.origamigui.controllers to javafx.fxml;
+    
+    exports com.pessetto.origamigui.gui to javafx.fxml;
+    exports com.pessetto.origamigui.console;
+    exports com.pessetto.origamigui.controllers;
 }
