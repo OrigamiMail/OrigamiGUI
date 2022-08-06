@@ -24,7 +24,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with: 
           upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-          asset_path: ./origami-smtp_*.exe
+          asset_path: ./origami-smtp_v2.0.0-setup.exe
           asset_name: origami-smtp.exe
           asset_content_type: application/octet-stream
 
@@ -64,7 +64,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           path: target/origami-smtp.jar
-      - name: Upload Windows Insaller
+      - name: Upload Windows Installer
         uses: actions/upload-artifact@v3
         with:
           path: origami-smtp_*.exe
