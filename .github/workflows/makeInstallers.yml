@@ -39,3 +39,11 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           path: target/origami-smtp.jar
+      - name: Upload Windows Insaller
+        uses: actions/upload-artifact@v3
+        with:
+          path: origami-smtp_*.exe
+      - name: Upload Debian Insaller
+        uses: actions/upload-artifact@v3
+        with:
+          path: origami-smtp_*.deb
