@@ -33,6 +33,8 @@ jobs:
         uses: joncloud/makensis-action@v3.7
         with:
           script-file: ${{ github.workspace }}/install.nsi
+      - name: Make jar file without version
+        run: cp target/OrigamiGUI-*.jar target/origami-smtp.jar
       - name: Upload target/origami-smtp.jar
         uses: actions/upload-artifact@v3
         with:
