@@ -1,0 +1,2 @@
+#Sat Aug 06 18:31:35 MDT 2022
+--no-man-pages --compress=2 --strip-debug --add-modules javafx.base,javafx.fxml,javafx.graphics,javafx.controls,java.desktop,javafx.web,javafx.swing,jdk.jsobject --save-opts jlink.txt --output runtime --module-path=C:\Program Files\SapMachine\JDK\17\javafx-sdk-18.0.2\lib 

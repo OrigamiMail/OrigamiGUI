@@ -23,5 +23,9 @@
     <jdkPreference>jdkOnly</jdkPreference>
     <runtimeBits>64</runtimeBits>
     <opt>-Duser.dir=&quot;%appdata%&quot;</opt>
+    <opt>--module-path</opt>
+    <opt>&quot;%EXEDIR%\javafx-sdk-18.0.2\lib&quot;</opt>
+    <opt>--add-modules</opt>
+    <opt>javafx.base,javafx.controls,javafx.fxml,javafx.graphics,javafx.media,javafx.swing,javafx.web</opt>
   </jre>
 </launch4jConfig>
