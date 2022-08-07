@@ -24,6 +24,7 @@ public class AboutController
 	@FXML
 	private void initialize()
 	{
+                System.out.println("Init about controller");
 		setLicenseText();
 		setVersion();
 	}

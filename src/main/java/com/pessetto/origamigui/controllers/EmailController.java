@@ -8,23 +8,22 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Properties;
 
-import javax.activation.DataHandler;
-import javax.mail.BodyPart;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.Session;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import javax.mail.util.ByteArrayDataSource;
+import jakarta.activation.DataHandler;
+import jakarta.mail.BodyPart;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Multipart;
+import jakarta.mail.Session;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
+import jakarta.mail.util.ByteArrayDataSource;
 
 import com.pessetto.origamismtp.filehandlers.inbox.Attachment;
 import com.pessetto.origamismtp.filehandlers.inbox.DeleteMessageListener;
 import com.pessetto.origamismtp.filehandlers.inbox.Inbox;
 import com.pessetto.origamismtp.filehandlers.inbox.Message;
 import com.pessetto.origamismtp.filehandlers.inbox.NewMessageListener;
-import com.sun.mail.smtp.SMTPTransport;
 
 import com.pessetto.origamigui.constants.ApplicationVariables;
 import com.pessetto.origamigui.debug.DebugLogSingleton;
@@ -97,6 +96,7 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 	@FXML
 	protected void handleExitMenuItemClicked(ActionEvent event)
 	{
+                System.out.println("exit menu clicked");
 		SettingsSingleton.getInstance().stopSMTPServer();
 		Platform.exit();
 	}
@@ -127,6 +127,7 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 	private void initEmailWebview()
 	{
 
+            System.out.println("Init webview");
             SettingsSingleton settings = SettingsSingleton.getInstance();
             bridge = new BrowserBridge(this);
             webengine = webview.getEngine();
@@ -154,8 +155,11 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 	}
 	
 	@FXML
-	private void initialize() throws Exception
+	private void initialize()
 	{
+            try
+            {
+                System.out.println("Init EmailController");
 		Updater updater = new Updater();
 		debugLog = DebugLogSingleton.getInstance();
 		SettingsSingleton settings = SettingsSingleton.getInstance();
@@ -212,6 +216,12 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 			}
 			
 		});
+            }
+            catch(Exception ex)
+            {
+                System.out.println(ex.getMessage());
+                ex.printStackTrace(System.err);
+            }
 		
 	}
 	
@@ -407,7 +417,7 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 	
 	private void forwardMessage(Message message)
 	{
-		try {
+		/*try {
 			SettingsSingleton settings = SettingsSingleton.getInstance();
 			if(settings.isSmtpForwardToRemote() && settings.getSmtpRemoteEmailList().size() > 0)
 			{
@@ -427,7 +437,7 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 				sendingMessage.setFrom(new InternetAddress(message.getFrom()));
 				for(ForwardingAddress forwardingAddress : settings.getSmtpRemoteEmailList())
 				{
-					sendingMessage.addRecipients(javax.mail.Message.RecipientType.BCC, InternetAddress.parse(forwardingAddress.getAddress(),false));
+					sendingMessage.addRecipients(jakarta.mail.Message.RecipientType.BCC, InternetAddress.parse(forwardingAddress.getAddress(),false));
 				}
 				sendingMessage.setSubject(message.getSubject());
 				sendingMessage.setHeader("X-Mailer", "Origami SMTP");
@@ -482,7 +492,7 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 				MimeMessage sendingMessage = new MimeMessage(session);
 				sendingMessage.setFrom(new InternetAddress(message.getFrom()));
 	
-			        sendingMessage.addRecipients(javax.mail.Message.RecipientType.TO, InternetAddress.parse(message.getTo(),false));
+			        sendingMessage.addRecipients(jakarta.mail.Message.RecipientType.TO, InternetAddress.parse(message.getTo(),false));
 				
 				sendingMessage.setSubject(message.getSubject());
 				sendingMessage.setHeader("X-Mailer", "Origami SMTP");
@@ -524,7 +534,7 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 		{
 			showAlert(AlertType.ERROR,"Failed to forward",e.getMessage());
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 	private String HtmlToViewableSource(String html)

@@ -160,6 +160,7 @@ public class SettingsController
    @FXML
    protected void initialize()
    {
+           System.out.println("init Settings controller");
 	   loadLocalSmtpSettings();
 	   loadRemoteSmtpSettings();
 	   loadBrowserSettings();

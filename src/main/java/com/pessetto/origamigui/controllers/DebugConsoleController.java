@@ -15,6 +15,7 @@ public class DebugConsoleController
 	@FXML
 	private void initialize()
 	{
+                System.out.println("Init debug console");
 		settings = SettingsSingleton.getInstance();
 		DebugLogSingleton debugLog = DebugLogSingleton.getInstance();
 		String logText = debugLog.readLog();

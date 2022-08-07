@@ -24,6 +24,7 @@ import com.pessetto.origamigui.debug.DebugLogSingleton;
 import com.pessetto.origamigui.listeners.TrayIconListener;
 import com.pessetto.origamigui.settings.SettingsSingleton;
 import com.pessetto.origamigui.tray.SystemTraySingleton;
+import java.io.IOException;
 
 public class OrigamiGUI extends Application implements ActionListener, TrayIconListener{
 	
@@ -34,26 +35,34 @@ public class OrigamiGUI extends Application implements ActionListener, TrayIconL
 	
 	
 	@Override
-	public void start(Stage stage) throws Exception {
+	public void start(Stage stage) {
 		
+            try
+            {
+                System.out.println("opening stage");
 		mainStage = stage;
 		Platform.setImplicitExit(false);
 		
 		// icons
+                System.out.println("setting icons");
 		icon = new Image(getClass().getClassLoader().getResourceAsStream("icons/origami.png"));
 		stage.getIcons().add(icon);
 		
+                System.out.println("Starting tray icon");
 		SystemTraySingleton systemTray = SystemTraySingleton.getInstance();
 		systemTray.setIcon(icon);
 		systemTray.addActionListener(this);
 		systemTray.startTrayIcon();
 		
+                System.out.println("Loading console");
+                System.out.println("Loading: "+getClass().getClassLoader().getResource("gui/Console.fxml"));
 		VBox console = FXMLLoader.load(getClass().getClassLoader().getResource("gui/Console.fxml"));
 		Scene scene = new Scene(console);
 		
 		mainStage.setTitle("Origami Mail");
 		mainStage.setScene(scene);
 		
+                System.out.println("Setting close event");
 		// Make sure to prompt before close
 		mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 		    @Override
@@ -62,7 +71,14 @@ public class OrigamiGUI extends Application implements ActionListener, TrayIconL
 		    }
 		});
 		
+               System.out.println("Opening stage");
 		openStage();
+            }
+            catch(IOException ex)
+            {
+                System.out.println("An IO Exception was found");
+                ex.printStackTrace(System.err);
+            }
 	}
 	
 	public void openStage()
@@ -104,6 +120,7 @@ public class OrigamiGUI extends Application implements ActionListener, TrayIconL
 	@Override
 	public void stop()
 	{
+                System.out.println("Exiting");
 		SystemTraySingleton systemTray = SystemTraySingleton.getInstance();
 		systemTray.stop();
 		SettingsSingleton.getInstance().stopSMTPServer();
@@ -115,7 +132,7 @@ public class OrigamiGUI extends Application implements ActionListener, TrayIconL
 		try
 		{
 		debugOut = System.err;
-		System.out.println("starting Origami GUI");
+		System.out.println("starting Origami GUI !");
 		String workingDir = System.getProperty("user.dir");
 		File workingDirFile = new File(workingDir+"/Origami SMTP");
 		System.out.println("working dir: " + workingDirFile.getAbsolutePath());
@@ -149,6 +166,8 @@ public class OrigamiGUI extends Application implements ActionListener, TrayIconL
 		{
 			debugOut.println("Exception:");
 			debugOut.println(ex.getMessage());
+                        System.err.println("Exception");
+                        ex.printStackTrace(System.err);
 			ex.printStackTrace(debugOut);
 		}
 	}

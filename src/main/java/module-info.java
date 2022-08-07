@@ -9,7 +9,7 @@ module com.pessetto.OrigamiGUI {
     requires javafx.graphics;
     requires javafx.controls;
     requires java.desktop;
-    requires mail;
+    requires jakarta.mail;
     requires com.pessetto.origamismtp;
     requires javafx.web;
     requires javafx.swing;

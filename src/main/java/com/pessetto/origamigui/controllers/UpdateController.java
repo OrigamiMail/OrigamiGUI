@@ -34,7 +34,7 @@ public class UpdateController {
 	
 	public void initialize()
 	{
-
+            System.out.println("Init update controller");
 	}
 	
 	public void initData(Updater up)
