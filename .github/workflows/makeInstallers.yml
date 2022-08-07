@@ -18,8 +18,8 @@ jobs:
         run:  sudo apt update && sudo apt install -y nsis nsis-pluginapi
       - name: Build with maven
         run: mvn --batch-mode --update-snapshots package
-      - name: Create jmod
-        run:  jmod create --class-path target\OrigamiGUI-*.jar --main-class com.pessetto.origamigui.console.GUIStarter target\origami-gui.jmod
+      # - name: Create jmod
+      #  run:  jmod create --class-path target\OrigamiGUI-*.jar --main-class com.pessetto.origamigui.console.GUIStarter target\origami-gui.jmod
       - name: Update config versions
         run: ./update-windows-installer-version.sh 
       - name: Install launch4j prereqs
