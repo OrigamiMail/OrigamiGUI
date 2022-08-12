@@ -10,12 +10,14 @@ module com.pessetto.OrigamiGUI {
     requires javafx.controls;
     requires java.desktop;
     requires jakarta.mail;
+    requires jakarta.activation;
     requires com.pessetto.origamismtp;
     requires javafx.web;
     requires javafx.swing;
     requires jdk.jsobject;
     requires org.jsoup;
-    
+    requires java.base;
+
     opens com.pessetto.origamigui.controllers to javafx.fxml;
     
     exports com.pessetto.origamigui.gui to javafx.fxml;
