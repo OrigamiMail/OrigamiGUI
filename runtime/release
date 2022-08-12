@@ -1,2 +1,2 @@
 JAVA_VERSION="17.0.4"
-MODULES="java.base java.datatransfer java.xml java.prefs java.desktop javafx.base java.logging java.security.sasl mail org.jsoup com.pessetto.origamismtp java.net.http java.scripting jdk.unsupported javafx.graphics javafx.controls javafx.fxml javafx.media jdk.unsupported.desktop javafx.swing jdk.jsobject jdk.xml.dom javafx.web org.json"
+MODULES="java.base java.datatransfer java.xml java.prefs java.desktop java.logging jakarta.activation jakarta.mail javafx.base org.jsoup com.pessetto.origamismtp java.net.http java.scripting jdk.unsupported javafx.graphics javafx.controls javafx.fxml javafx.media jdk.unsupported.desktop javafx.swing jdk.jsobject jdk.xml.dom javafx.web jdk.crypto.ec org.json"
