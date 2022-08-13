@@ -97,7 +97,7 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 			stage.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream("icons/origami.png")));
 			AnchorPane settings = FXMLLoader.load(getClass().getClassLoader().getResource("gui/ServerSettings.fxml"));
 			Scene scene = new Scene(settings);
-			stage.setTitle("Origami SMTP Settings");
+			stage.setTitle("Origami Mail Settings");
 			stage.setScene(scene);
 			stage.show();
 		} catch (Exception e) {
@@ -303,7 +303,7 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 			stage.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream("icons/origami.png")));
 			AnchorPane settings = FXMLLoader.load(getClass().getClassLoader().getResource("gui/About.fxml"));
 			Scene scene = new Scene(settings,600,221);
-			stage.setTitle("About Origami SMTP");
+			stage.setTitle("About Origami Mail");
 			stage.setScene(scene);
 			stage.show();
 		} catch (Exception e) {
@@ -321,7 +321,7 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 			stage.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream("icons/origami.png")));
 			AnchorPane debug = FXMLLoader.load(getClass().getClassLoader().getResource("gui/DebugConsole.fxml"));
 			Scene scene = new Scene(debug,600,221);
-			stage.setTitle("Debug Console Origami SMTP");
+			stage.setTitle("Debug Console Origami Mail");
 			stage.setScene(scene);
 			stage.show();
 		} catch (Exception e) {
@@ -441,7 +441,7 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 					sendingMessage.addRecipients(jakarta.mail.Message.RecipientType.BCC, InternetAddress.parse(forwardingAddress.getAddress(),false));
 				}
 				sendingMessage.setSubject(message.getSubject());
-				sendingMessage.setHeader("X-Mailer", "Origami SMTP");
+				sendingMessage.setHeader("X-Mailer", "Origami Mail");
 				sendingMessage.setSentDate(new Date());
 				BodyPart messageBodyPart = new MimeBodyPart();
 				if(message.getHTMLMessage() != null)
@@ -496,7 +496,7 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 			        sendingMessage.addRecipients(jakarta.mail.Message.RecipientType.TO, InternetAddress.parse(message.getTo(),false));
 				
 				sendingMessage.setSubject(message.getSubject());
-				sendingMessage.setHeader("X-Mailer", "Origami SMTP");
+				sendingMessage.setHeader("X-Mailer", "Origami Mail");
 				sendingMessage.setSentDate(new Date());
 				BodyPart messageBodyPart = new MimeBodyPart();
 				if(message.getHTMLMessage() != null)
