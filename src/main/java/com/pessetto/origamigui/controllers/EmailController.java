@@ -7,18 +7,6 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Properties;
-
-import jakarta.activation.DataHandler;
-import jakarta.mail.BodyPart;
-import jakarta.mail.MessagingException;
-import jakarta.mail.Multipart;
-import jakarta.mail.Session;
-import jakarta.mail.internet.InternetAddress;
-import jakarta.mail.internet.MimeBodyPart;
-import jakarta.mail.internet.MimeMessage;
-import jakarta.mail.internet.MimeMultipart;
-import jakarta.mail.util.ByteArrayDataSource;
-
 import com.pessetto.origamismtp.filehandlers.inbox.Attachment;
 import com.pessetto.origamismtp.filehandlers.inbox.DeleteMessageListener;
 import com.pessetto.origamismtp.filehandlers.inbox.Inbox;
@@ -131,11 +119,24 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
             SettingsSingleton settings = SettingsSingleton.getInstance();
             bridge = new BrowserBridge(this);
             webengine = webview.getEngine();
+            // exception handler
+            webengine.getLoadWorker().exceptionProperty().addListener((ov,t,t1) ->
+                 System.out.println("Web engine exception: " + t1.getMessage()));
+            
+            webengine.getLoadWorker().exceptionProperty().addListener(new ChangeListener<Throwable>() {
+                @Override
+                public void changed(ObservableValue<? extends Throwable> ov, Throwable t, Throwable t1) {
+                    System.out.println("Received exception: "+t1.getMessage());
+                }
+            });
+            
             webengine.getLoadWorker().stateProperty().addListener(new ChangeListener<State>(){
+                    @Override
                     public void changed(ObservableValue ov, State oldState, State newState)
                     {
-                            JSObject win = (JSObject) webengine.executeScript("window");
-                            win.setMember("app",bridge);
+                        System.out.println("Web engine change fired");
+                        JSObject win = (JSObject) webengine.executeScript("window");
+                        win.setMember("app",bridge);
                     }
             });
 

@@ -70,6 +70,7 @@ public class BrowserBridge
 	
 	public void saveAttachment(int index)
 	{
+                System.out.println("Save attachment");
 		Attachment attach = controller.getSelectedMessage().getAttachments().get(index);
 		FileChooser fd = new FileChooser();
 		fd.setTitle("Save file as...");

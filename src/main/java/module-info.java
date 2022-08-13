@@ -19,6 +19,7 @@ module com.pessetto.OrigamiGUI {
     requires java.base;
 
     opens com.pessetto.origamigui.controllers to javafx.fxml;
+    opens com.pessetto.origamigui.web to javafx.web;
     
     exports com.pessetto.origamigui.gui to javafx.fxml;
     exports com.pessetto.origamigui.console;
