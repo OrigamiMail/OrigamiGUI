@@ -234,12 +234,12 @@
             <artifactId>angus-activation</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.angus/smtp -->
         <dependency>
             <groupId>org.eclipse.angus</groupId>
             <artifactId>smtp</artifactId>
             <version>1.0.0</version>
         </dependency>
-
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>

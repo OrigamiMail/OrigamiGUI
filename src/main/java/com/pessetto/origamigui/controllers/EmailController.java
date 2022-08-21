@@ -27,6 +27,7 @@ import jakarta.mail.BodyPart;
 import jakarta.mail.MessagingException;
 import jakarta.mail.Multipart;
 import jakarta.mail.Session;
+import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeBodyPart;
 import jakarta.mail.internet.MimeMessage;
@@ -428,7 +429,7 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 	
 	private void forwardMessage(Message message)
 	{
-		/*try {
+		try {
 			SettingsSingleton settings = SettingsSingleton.getInstance();
 			if(settings.isSmtpForwardToRemote() && settings.getSmtpRemoteEmailList().size() > 0)
 			{
@@ -476,11 +477,13 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 					multipart.addBodyPart(messageBodyPart);
 				}
 				sendingMessage.setContent(multipart);
-				SMTPTransport smtpTransport = (SMTPTransport)session.getTransport("smtps");
+				/*SMTPTransport smtpTransport = (SMTPTransport)session.getTransport("smtps");
 				smtpTransport.connect(settings.getSmtpRemoteAddress(),settings.getSmtpRemotePort(),settings.getSmtpRemoteUserName(),settings.getSmtpRemoteUserPassword());
 				smtpTransport.sendMessage(sendingMessage, sendingMessage.getAllRecipients());
 				System.out.println("Remote SMTP Server Response: " + smtpTransport.getLastServerResponse());
-				smtpTransport.close();
+				smtpTransport.close();*/
+        
+                                Transport.send(sendingMessage,sendingMessage.getAllRecipients(),settings.getSmtpRemoteUserName(), settings.getSmtpRemoteUserPassword());
 			}
 			else
 			{
@@ -531,11 +534,12 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 					multipart.addBodyPart(messageBodyPart);
 				}
 				sendingMessage.setContent(multipart);
-				SMTPTransport smtpTransport = (SMTPTransport)session.getTransport("smtps");
+                                Transport.send(sendingMessage,sendingMessage.getAllRecipients(),settings.getSmtpRemoteUserName(),settings.getSmtpRemoteUserPassword());
+				/*SMTPTransport smtpTransport = (SMTPTransport)session.getTransport("smtps");
 				smtpTransport.connect(settings.getSmtpRemoteAddress(),settings.getSmtpRemotePort(),settings.getSmtpRemoteUserName(),settings.getSmtpRemoteUserPassword());
 				smtpTransport.sendMessage(sendingMessage, sendingMessage.getAllRecipients());
 				System.out.println("Remote SMTP Server Response: " + smtpTransport.getLastServerResponse());
-				smtpTransport.close();
+				smtpTransport.close();*/
 			}
 			else
 			{
@@ -545,7 +549,7 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 		{
 			showAlert(AlertType.ERROR,"Failed to forward",e.getMessage());
 			e.printStackTrace();
-		}*/
+		}
 	}
 	
 	private String HtmlToViewableSource(String html)
