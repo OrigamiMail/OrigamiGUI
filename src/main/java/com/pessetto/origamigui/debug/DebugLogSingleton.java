@@ -17,8 +17,8 @@ public class DebugLogSingleton
 	
 	protected DebugLogSingleton()
 	{
-		//redirectSystemOut();
-		//redirectSystemErr();
+		redirectSystemOut();
+		redirectSystemErr();
 	}
 	
 	public static DebugLogSingleton getInstance()
