@@ -14,15 +14,11 @@ import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import com.pessetto.origamigui.constants.ApplicationVariables;
 import com.pessetto.origamigui.constants.SettingsVariables;
 import com.pessetto.origamigui.controllers.UpdateController;
-import com.pessetto.origamigui.listeners.SMTPThreadErrorListener;
-import com.pessetto.origamigui.settings.SettingsSingleton;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,7 +27,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Updater implements Serializable
