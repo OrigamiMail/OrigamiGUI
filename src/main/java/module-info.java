@@ -17,7 +17,9 @@ module com.pessetto.OrigamiGUI {
     requires jdk.jsobject;
     requires org.jsoup;
     requires java.base;
+    requires org.json;
 
+    opens com.pessetto.origamigui.email to javafx.base;
     opens com.pessetto.origamigui.controllers to javafx.fxml;
     opens com.pessetto.origamigui.web to javafx.web;
     
