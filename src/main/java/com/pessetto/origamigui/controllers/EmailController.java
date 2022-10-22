@@ -298,7 +298,7 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 	
 	public void donate()
 	{
-		bridge.openLink("https://liberapay.com/travispessetto/donate");
+            bridge.openLink("https://liberapay.com/travispessetto/donate");
 	}
         
         public void getSupport()
@@ -577,13 +577,15 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 	{
 		try
 		{
+                        String htmlContent = message.getHTMLMessage();
+			htmlContent = HtmlToViewableSource(htmlContent);
+                        
 			String plainContent = message.getPlainMessage();
 			if(plainContent != null)
 			{
 				plainContent = scrubContent(plainContent);
 			}
-			String htmlContent = message.getHTMLMessage();
-			htmlContent = HtmlToViewableSource(htmlContent);
+			
 			
 			detailsWebEngine.executeScript("setContent(\""+message.getFrom()+"\",\""+message.getTo()+
 					"\",\""+message.getSubject()+"\",\""+plainContent+"\",\""+htmlContent+"\")");
@@ -621,7 +623,7 @@ DeleteMessageListener, SMTPStatusListener, ActionListener
 			}
 			else if(message.getPlainMessage() != null)
 			{
-				loadEmail(webengine,message.getPlainMessage());
+				loadEmail(webengine,"<pre>"+message.getPlainMessage()+"</pre>");
 			}
 			else
 			{
