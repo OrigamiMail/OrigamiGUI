@@ -14,3 +14,5 @@ jobs:
           java-version: '17'
           distribution: 'liberica'
           java-package: jdk+fx
+      - name: Build with maven
+        run: mvn --batch-mode --update-snapshots package
