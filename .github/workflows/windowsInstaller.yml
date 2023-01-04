@@ -14,5 +14,7 @@ jobs:
           java-version: '17'
           distribution: 'liberica'
           java-package: jdk+fx
+      - name: Download NSIS Portable
+        run:  Invoke-Webrequest -URI https://gigenet.dl.sourceforge.net/project/nsis/NSIS%202/2.51/nsis-2.51.zip -OutFile nsis.zip
       - name: Build with maven
         run: mvn --batch-mode --update-snapshots package
