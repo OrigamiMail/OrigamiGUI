@@ -16,5 +16,7 @@ jobs:
           java-package: jdk+fx
       - name: Download NSIS
         run:  Invoke-Webrequest -URI http://gigenet.dl.sourceforge.net/project/nsis/NSIS%202/2.51/nsis-2.51.zip -OutFile nsis.zip
+      - name: Unzip NSIS
+        run:  Expand-Archive nsis.zip
       - name: Build with maven
         run: mvn --batch-mode --update-snapshots package
