@@ -22,4 +22,5 @@ jobs:
         run: mvn --batch-mode --update-snapshots package
       - name: Update Installer Versions [Powershell Script]
         shell: pwsh
-        run:  update-installer-version.ps1
+        run: |
+          ./update-installer-version.ps1
