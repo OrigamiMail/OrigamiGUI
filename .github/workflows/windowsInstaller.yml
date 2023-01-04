@@ -20,3 +20,5 @@ jobs:
         run:  Expand-Archive nsis.zip
       - name: Build with maven
         run: mvn --batch-mode --update-snapshots package
+      - name: Update Installer Versions [Powershell Script]
+        run:  update-installer-version.ps1
